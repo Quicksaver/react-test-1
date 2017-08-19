@@ -7,6 +7,11 @@ class HelloWorld extends Component {
         this.state = { greeting: 'Hello' };
 
         this.frenchify = this.frenchify.bind(this);
+        this.removeGreeting = this.removeGreeting.bind(this);
+    }
+
+    removeGreeting() {
+        this.props.removeGreeting(this.props.name);
     }
 
     frenchify() {
@@ -19,6 +24,8 @@ class HelloWorld extends Component {
                 {this.state.greeting} {this.props.name}!
                 <br/>
                 <button onClick={this.frenchify}>Frenchify!</button>
+                &nbsp;&nbsp;
+                <button onClick={this.removeGreeting}>Remove</button>
             </div>
         );
     }
