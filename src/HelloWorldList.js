@@ -6,58 +6,24 @@ import HelloMap from './HelloMap';
 import './HelloWorldList.css';
 
 class HelloWorldList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { greetings: [] };
-
-        this.addGreeting = this.addGreeting.bind(this);
-        this.removeGreeting = this.removeGreeting.bind(this);
-    }
-
-    componentDidMount() {
-        this.grabGreetings();
-    }
-
-    grabGreetings() {
-        fetch("./greetings.json")
-            .then((response) => {
-                return response.json();
-            })
-            .then((response) => {
-                if(response) {
-                    this.setState({ greetings: response });
-                }
-            })
-            .catch((ex) => {
-                console.error(ex);
-            });
-    }
-
-    addGreeting(newName) {
-        this.setState({ greetings: [...this.state.greetings, newName] });
-    }
-
-    removeGreeting(removeName) {
-        const filteredGreetings = this.state.greetings.filter(name => {
-            return name !== removeName;
-        });
-        this.setState({ greetings: filteredGreetings });
-    }
-
     renderGreetings() {
-        return this.state.greetings.map(name => (
-            <HelloWorld
-                key={name}
-                name={name}
-                removeGreeting={this.removeGreeting}
-            />
-        ));
+        let ret = [];
+        for(let person of this.props.greetings) {
+            ret.push((
+                <HelloWorld
+                    key={person.id}
+                    person={person}
+                    removeGreeting={this.props.removeGreeting}
+                />
+            ));
+        }
+        return ret;
     }
 
     render() {
         return (
             <div className="HelloWorldList">
-                <AddGreeter addGreeting={this.addGreeting} />
+                <AddGreeter addGreeting={this.props.addGreeting} />
                 {this.renderGreetings()}
                 <HelloMap/>
             </div>

@@ -13,7 +13,7 @@ class HelloWorld extends Component {
     }
 
     removeGreeting() {
-        this.props.removeGreeting(this.props.name);
+        this.props.removeGreeting(this.props.person.id);
     }
 
     frenchify() {
@@ -23,7 +23,7 @@ class HelloWorld extends Component {
     render() {
         return (
             <div className="HelloWorld">
-                {this.state.greeting} <Link to={{ pathname: '/mingle/'+this.props.name }}>{this.props.name}</Link>!
+                {this.state.greeting} <Link to={{ pathname: '/mingle/'+this.props.person.id }}>{this.props.person.first}</Link>!
                 <br/>
                 <button className="frenchify" onClick={this.frenchify}>Frenchify!</button>
                 &nbsp;&nbsp;
