@@ -1,0 +1,12 @@
+.HelloMap {
+    margin: 20px;
+    padding: 20px;
+    border: 2px solid #FF0000;
+    background: #FFEEEE;
+}
+
+.leaflet-container {
+    height: 200px;
+    width: 400px;
+    margin: auto auto;
+}

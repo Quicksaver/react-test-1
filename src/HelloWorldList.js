@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+
 import HelloWorld from './HelloWorld';
 import AddGreeter from './AddGreeter';
+import HelloMap from './HelloMap';
 import './HelloWorldList.css';
 
 class HelloWorldList extends Component {
@@ -57,6 +59,7 @@ class HelloWorldList extends Component {
             <div className="HelloWorldList">
                 <AddGreeter addGreeting={this.addGreeting} />
                 {this.renderGreetings()}
+                <HelloMap/>
             </div>
         );
     }
