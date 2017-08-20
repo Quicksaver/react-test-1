@@ -6,10 +6,29 @@ import './HelloWorldList.css';
 class HelloWorldList extends Component {
     constructor(props) {
         super(props);
-        this.state = { greetings: ['Jim', 'Sally', 'Dwight'] };
+        this.state = { greetings: [] };
 
         this.addGreeting = this.addGreeting.bind(this);
         this.removeGreeting = this.removeGreeting.bind(this);
+    }
+
+    componentDidMount() {
+        this.grabGreetings();
+    }
+
+    grabGreetings() {
+        fetch("./greetings.json")
+            .then((response) => {
+                return response.json();
+            })
+            .then((response) => {
+                if(response) {
+                    this.setState({ greetings: response });
+                }
+            })
+            .catch((ex) => {
+                console.error(ex);
+            });
     }
 
     addGreeting(newName) {
