@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import './HelloWorld.css';
 
 class HelloWorld extends Component {
@@ -21,7 +23,7 @@ class HelloWorld extends Component {
     render() {
         return (
             <div className="HelloWorld">
-                {this.state.greeting} {this.props.name}!
+                {this.state.greeting} <Link to={{ pathname: '/mingle/'+this.props.name }}>{this.props.name}</Link>!
                 <br/>
                 <button className="frenchify" onClick={this.frenchify}>Frenchify!</button>
                 &nbsp;&nbsp;
