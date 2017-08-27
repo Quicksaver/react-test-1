@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import UsersAPI from './UsersAPI';
 import './HelloWorld.css';
 
 class HelloWorld extends Component {
@@ -13,7 +14,7 @@ class HelloWorld extends Component {
     }
 
     removeGreeting() {
-        this.props.removeGreeting(this.props.person.id);
+        UsersAPI.remove(this.props.person.id);
     }
 
     frenchify() {

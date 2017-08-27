@@ -1,19 +1,40 @@
 import React, { Component } from 'react';
 
+import UsersAPI from './UsersAPI';
 import HelloWorld from './HelloWorld';
 import AddGreeter from './AddGreeter';
 import HelloMap from './HelloMap';
 import './HelloWorldList.css';
 
 class HelloWorldList extends Component {
+	constructor(props) {
+        super(props);
+        this.state = { greetings: [], nextId: 1 };
+    }
+
+    componentDidMount() {
+        UsersAPI.register(this);
+        this.dataChanged();
+    }
+
+    componentWillUnmount() {
+        UsersAPI.unregister(this);
+    }
+
+    dataChanged() {
+        UsersAPI.all()
+			.then((greetings) => {
+				this.setState({ greetings });
+			});
+    }
+
     renderGreetings() {
         let ret = [];
-        for(let person of this.props.greetings) {
+        for(let person of this.state.greetings) {
             ret.push((
                 <HelloWorld
                     key={person.id}
                     person={person}
-                    removeGreeting={this.props.removeGreeting}
                 />
             ));
         }
@@ -23,7 +44,7 @@ class HelloWorldList extends Component {
     render() {
         return (
             <div className="HelloWorldList">
-                <AddGreeter addGreeting={this.props.addGreeting} />
+                <AddGreeter/>
                 {this.renderGreetings()}
                 <HelloMap/>
             </div>

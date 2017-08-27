@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import UsersAPI from './UsersAPI';
 import './AddGreeter.css';
 
 class AddGreeter extends Component {
@@ -15,7 +16,7 @@ class AddGreeter extends Component {
     }
 
     addGreeting() {
-        this.props.addGreeting(this.state.greetingName);
+        UsersAPI.add(this.state.greetingName);
         this.setState({ greetingName: '' });
     }
 
