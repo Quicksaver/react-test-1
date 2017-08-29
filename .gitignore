@@ -8,6 +8,7 @@
 
 # production
 /build
+.netlify
 
 # test snapshots
 /src/__snapshots__
