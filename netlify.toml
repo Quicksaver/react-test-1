@@ -1,0 +1,6 @@
+# Ref: https://www.netlify.com/docs/continuous-deployment/
+
+# Global settings applied to the whole site.
+[build]
+  publish = "build"
+  command = "npm run build"
